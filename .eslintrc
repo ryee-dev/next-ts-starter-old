@@ -1,11 +1,13 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "prettier", "react", "react-hooks"],
   "extends": [
     "eslint:recommended",
+    "eslint-config-prettier/@typescript-eslint",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
+    "prettier/react",
     "prettier/@typescript-eslint"
   ],
   "env": {
@@ -36,6 +38,7 @@
       {
         "allow": ["warn", "error"]
       }
-    ]
+    ],
+    "@typescript-eslint/semi": 1
   }
 }
