@@ -24,7 +24,11 @@ export const Home = (): JSX.Element => {
     >
       <Button onClick={() => setOpen(true)}>Open Form</Button>
       <MemorialList />
-      <ModalForm open={open} setOpen={setOpen} />
+      <ModalForm
+        // @ts-ignore
+        open={open}
+        setOpen={setOpen}
+      />
     </Container>
   );
 };
