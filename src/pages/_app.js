@@ -1,8 +1,14 @@
 // import App from 'next/app'
+import { AppProvider } from "../context";
+
 import 'semantic-ui-css/semantic.min.css';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  return (
+    <AppProvider>
+      <Component {...pageProps} />
+    </AppProvider>
+  );
 }
 
 // Only uncomment this method if you have blocking data requirements for

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Container } from 'theme-ui';
 import { Button } from 'semantic-ui-react';
 
-import MemorialList from '../components/MemorialList';
-import ModalForm from '../components/ModalForm';
+// import MemorialList from '../components/MemorialList';
+import NewPostModal from '../components/NewPostModal';
+import PostsList from '../components/Posts';
 
 export const Home = (): JSX.Element => {
   const [open, setOpen] = useState(false);
@@ -23,8 +24,8 @@ export const Home = (): JSX.Element => {
       }}
     >
       <Button onClick={() => setOpen(true)}>Open Form</Button>
-      <MemorialList />
-      <ModalForm
+      <PostsList />
+      <NewPostModal
         // @ts-ignore
         open={open}
         setOpen={setOpen}
