@@ -1,5 +1,5 @@
 // import App from 'next/app'
-import { AppProvider } from "../context";
+import { AppProvider } from '../context';
 
 import 'semantic-ui-css/semantic.min.css';
 
