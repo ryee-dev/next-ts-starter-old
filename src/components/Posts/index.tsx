@@ -21,6 +21,7 @@ const PostsList = () => {
       {posts.map((post) => (
         <Box key={post.id}>
           <h1>{post.name}</h1>
+          <img src={post.imageUpload} alt={`${post.name}-image`} />
         </Box>
       ))}
     </Container>

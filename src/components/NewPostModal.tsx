@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Container } from 'theme-ui';
+import { Container, Flex, Image } from 'theme-ui';
 import { Modal, Button, Form } from 'semantic-ui-react';
 import { AppContext } from '../context';
 import { Types } from '../utils/types';
@@ -18,11 +18,14 @@ const NewPostModal: React.FC<> = (props: ModalFormProps) => {
 
   const [form, setForm] = useState({
     name: '',
+    imageUpload: '',
   });
 
   const { dispatch } = useContext(AppContext);
 
-  const handleForm = (type: string, value: string) => {
+  // const uploadedImageRef = useRef(null);
+
+  const handleForm = (type: string, value: any) => {
     setForm((form) => ({
       ...form,
       [type]: value,
@@ -46,7 +49,10 @@ const NewPostModal: React.FC<> = (props: ModalFormProps) => {
     setOpen(false);
     setForm({
       name: '',
+      imageUpload: '',
     });
+    // eslint-disable-next-line no-console
+    console.log(form.imageUpload);
   };
 
   return (
@@ -56,10 +62,19 @@ const NewPostModal: React.FC<> = (props: ModalFormProps) => {
         sx={{
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'flex-start',
-          flexDirection: 'column',
+          justifyContent: 'space-evenly',
+          // flexDirection: 'column',
         }}
       >
+        {form.imageUpload && (
+          <Image
+            src={URL.createObjectURL(form.imageUpload)}
+            alt={form.name}
+            sx={{
+              maxWidth: '300px',
+            }}
+          />
+        )}
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Form.Field>
             <label>Name</label>
@@ -74,10 +89,32 @@ const NewPostModal: React.FC<> = (props: ModalFormProps) => {
             />
             {errors.name && 'Name is required.'}
           </Form.Field>
-          <Button type="submit">Submit</Button>
-          <Button color="red" onClick={() => setOpen(false)}>
-            Close
-          </Button>
+          <Form.Field>
+            <label htmlFor="file">Add Image</label>
+            <input
+              type="file"
+              accept="image/*"
+              name="image-upload"
+              onChange={(e) => {
+                handleForm('imageUpload', e.target.files[0]);
+              }}
+            />
+          </Form.Field>
+          <Flex
+            sx={{
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Button
+              style={{ marginRight: 0 }}
+              color="red"
+              onClick={() => setOpen(false)}
+            >
+              Close
+            </Button>
+            <Button type="submit">Submit</Button>
+          </Flex>
         </Form>
       </Container>
     </Modal>

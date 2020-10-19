@@ -8,6 +8,7 @@ export const postsReducer = (state: PostProps[], action: PostActions) => {
         {
           id: action.payload.id,
           name: action.payload.name,
+          imageUpload: action.payload.imageUpload,
         },
       ];
     case Types.Remove:

@@ -4,6 +4,7 @@ import React from 'react';
 
 export interface PostProps {
   id: number;
+  imageUpload: any;
   name: string;
 }
 
